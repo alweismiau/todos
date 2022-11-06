@@ -90,19 +90,18 @@ export const useTodo = defineStore({
       });
     },
 
-    async updateStatus(id_task) {
+    async updateStatus(id_task, index) {
       let task = this.task;
       let id = id_task;
-      console.log(this.task.newTodo[id].status)
       await updateDoc(doc(db, "todo_list", id.toString()), {
-        status: !task.newTodo[id].status
+        status: !task.newTodo[index].status
       });
     },
 
-    async editTask(id_task) {
+    async editTask(id_task, index) {
       let id = id_task;
       await updateDoc(doc(db, "todo_list", id.toString()), {
-        task: this.task.newTodo[id].task
+        task: this.task.newTodo[index].task
       });
     },
     
